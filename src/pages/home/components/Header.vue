@@ -3,22 +3,28 @@
     <div class="header-left">
       <div class="iconfont back-icon">&#xe624;</div>
     </div>
-    <div class="header-input"><span class="iconfont">&#xe632;</span>
-    输入城市/景点/游玩主题</div>
-    <div class="header-right">城市
-      <span class="iconfont arrow-icon">&#xe64a;</span>
+    <div class="header-input">
+      <span class="iconfont">&#xe632;</span>
+      输入城市/景点/游玩主题
     </div>
+    <router-link to="/city">
+      <div class="header-right">
+        西安
+        <span class="iconfont arrow-icon">&#xe64a;</span>
+      </div>
+    </router-link>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'HomeHeader'
+  name: "HomeHeader"
 };
 </script>
 
 <style lang="stylus" scoped>
 @import '~styles/varibles.styl';
+
 .header {
   display: flex;
   line-height: 0.86rem;
@@ -30,18 +36,21 @@ export default {
   width: 0.64rem;
   float: left;
 }
-.back-icon{
-  text-align :center
-  font-size : .4rem
+
+.back-icon {
+  text-align: center;
+  font-size: 0.4rem;
 }
 
 .header-right {
   width: 1.24rem;
   float: right;
   text-align: center;
+  color: #fff;
 }
-.arrow-icon{
-  font-size : .24rem
+
+.arrow-icon {
+  font-size: 0.24rem;
 }
 
 .header-input {
@@ -53,6 +62,6 @@ export default {
   background: #fff;
   border-radius: 0.1rem;
   color: #c1b1b1;
-  padding-left : .1rem
+  padding-left: 0.1rem;
 }
 </style>
