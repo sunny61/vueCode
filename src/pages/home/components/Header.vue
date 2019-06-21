@@ -9,7 +9,9 @@
     </div>
     <router-link to="/city">
       <div class="header-right">
-        西安
+        <!-- {{this.$store.state.city}} 等价于： -->
+        {{this.city}}
+        <!-- {{this.doubleCity}} 演示getters用法 -->
         <span class="iconfont arrow-icon">&#xe64a;</span>
       </div>
     </router-link>
@@ -17,8 +19,13 @@
 </template>
 
 <script>
+import { mapState,mapGetters } from "vuex";
 export default {
-  name: "HomeHeader"
+  name: "HomeHeader",
+  computed:{
+    ...mapState(['city']),
+    ...mapGetters(['doubleCity'])
+  }
 };
 </script>
 
@@ -43,7 +50,8 @@ export default {
 }
 
 .header-right {
-  width: 1.24rem;
+  min-width: 1.04rem;
+  padding: 0 0.1rem;
   float: right;
   text-align: center;
   color: #fff;

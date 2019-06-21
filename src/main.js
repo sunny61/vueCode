@@ -3,6 +3,7 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import store from './store'
 // fastclick手机用户点击不会延迟3秒
 import fastClick from 'fastclick'
 import 'styles/reset.css'
@@ -23,6 +24,7 @@ Vue.config.devtools = true
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>'
 })

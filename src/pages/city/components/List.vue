@@ -5,14 +5,22 @@
         <div class="title border-topbottom">当前城市</div>
         <div class="button-list">
           <div class="button-wrapper">
-            <div class="button">北京</div>
+            <div class="button">
+              <!-- {{this.$store.state.city}}   添加...mapState(["city"])之后等价于： -->
+              {{this.city}}
+            </div>
           </div>
         </div>
       </div>
       <div class="area">
         <div class="title border-topbottom">热门城市</div>
         <div class="button-list">
-          <div class="button-wrapper" v-for="item in hotCities" :key="item.id">
+          <div
+            class="button-wrapper"
+            v-for="item in hotCities"
+            :key="item.id"
+            @click="handleCityClick(item.name)"
+          >
             <div class="button">{{item.name}}</div>
           </div>
         </div>
@@ -24,6 +32,7 @@
             class="item border-bottom"
             v-for="innerItem in item"
             :key="innerItem.id"
+            @click="handleCityClick(innerItem.name)"
           >{{innerItem.name}}</div>
         </div>
       </div>
@@ -33,6 +42,7 @@
 
 <script>
 import BScroll from "better-scroll";
+import { mapState, mapMutations } from "vuex";
 export default {
   name: "cityList",
   props: {
@@ -42,6 +52,19 @@ export default {
   },
   mounted() {
     this.scroll = new BScroll(this.$refs.wrapper);
+  },
+  computed: {
+    ...mapState(["city"])
+  },
+  methods: {
+    ...mapMutations(["changeCity"]),
+    handleCityClick(city) {
+      // 1、this.$store.dispatch("changeCity", city);提交数据至actions，由actions再提交到mutations
+      // 2、this.$store.commit("changeCity", city);直接数据至mutations
+      //3、 ...mapMutations(["changeCity"]),调用changeCity
+      this.changeCity(city);
+      this.$router.push('/')
+    }
   },
   watch: {
     letter() {

@@ -2,9 +2,9 @@
   <div>
     <div class="recommend-title">热销推荐</div>
     <ul>
-      <li class="item border-bottom" v-for="item in iconList" :key="item.index">
+      <li class="item border-bottom" v-for="item in list" :key="item.id">
         <div class="item-img-wrapper">
-          <img class="item-img" :src="item.url">
+          <img class="item-img" :src="item.imgUrl">
         </div>
         <div class="item-info">
           <p class="item-title">{{item.title}}</p>
@@ -18,36 +18,11 @@
 <script>
 export default {
   name: "recommend",
+  props: {
+    list: Array
+  },
   data() {
-    return {
-      iconList: [
-        {
-          url: "../../../static/img/12.jpg",
-          index: "1",
-          title: "国家AAAAA级旅游景区,云南丽江山水欢迎您!",
-          desc:
-            "云南是一个多民族的省份，语言文字丰富多彩。国家历史文化名城：昆明、大理、丽江、建水、巍山、会泽"
-        },
-        {
-          url: "../../../static/img/13.jpg",
-          index: "2",
-          title: "云南丽江山水欢迎您!",
-          desc: "云南是一个多民族的省份，语言文字丰富多彩。"
-        },
-        {
-          url: "../../../static/img/14.jpg",
-          index: "3",
-          title: "云南丽江山水欢迎您!",
-          desc: "云南是一个多民族的省份，语言文字丰富多彩。"
-        },
-        {
-          url: "../../../static/img/15.jpg",
-          index: "4",
-          title: "云南丽江山水欢迎您!",
-          desc: "云南是一个多民族的省份，语言文字丰富多彩。"
-        }
-      ]
-    };
+    return {};
   }
 };
 </script>
