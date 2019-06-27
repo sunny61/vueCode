@@ -15,6 +15,7 @@ import HomeSwiper from "./components/Swiper";
 import HomeIcons from "./components/Icons";
 import HomeRecommend from "./components/Recommend";
 import HomeWeekend from "./components/Weekend";
+import { mapState } from "vuex";
 
 export default {
   name: "home",
@@ -25,18 +26,24 @@ export default {
     HomeRecommend,
     HomeWeekend
   },
+  computed: {
+    ...mapState(["city"])
+  },
   data() {
     return {
+      lastCity: "",
       swiperList: [],
       iconList: [],
       recommendList: [],
-      weekendList: [],
+      weekendList: []
     };
   },
 
   methods: {
     getHomeInfo() {
-      axios.get("../static/mock/index.json").then(this.handleGetHomeInfoSucc);
+      axios
+        .get("../static/mock/index.json?city=" + this.city)
+        .then(this.handleGetHomeInfoSucc);
     },
     handleGetHomeInfoSucc(res) {
       console.log(res);
@@ -51,7 +58,17 @@ export default {
     }
   },
   mounted() {
+    this.lastCity = this.city;
     this.getHomeInfo();
+  },
+  activated() {
+    //添加 <keep-alive>之后，mounted不执行，只有activated执行
+    console.log(this.lastCity);
+    console.log(this.city);
+    if (this.lastCity !== this.city) {
+      this.lastCity = this.city;
+      this.getHomeInfo();
+    }
   }
 };
 </script>

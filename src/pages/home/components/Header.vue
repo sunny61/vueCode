@@ -9,7 +9,7 @@
     </div>
     <router-link to="/city">
       <div class="header-right">
-        <!-- {{this.$store.state.city}} 等价于： -->
+        <!-- {{this.$store.state.city}} 等价于：引入...mapState(['city']),之后this.city -->
         {{this.city}}
         <!-- {{this.doubleCity}} 演示getters用法 -->
         <span class="iconfont arrow-icon">&#xe64a;</span>
